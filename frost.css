@@ -1,0 +1,388 @@
+/* FROST tribute page — Starsiege: Tribes command HUD (phosphor green) */
+:root {
+    --hud-green: #35ff9e;
+    --hud-green-dim: #1f8f5a;
+    --hud-green-soft: rgba(53, 255, 158, 0.55);
+    --hud-green-faint: rgba(53, 255, 158, 0.12);
+    --hud-bg: #030805;
+    --hud-panel: rgba(10, 26, 18, 0.55);
+    --kia: #ffcf3b;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(ellipse 90% 70% at 50% 30%, rgba(31, 143, 90, 0.22) 0%, transparent 60%),
+        var(--hud-bg);
+    color: var(--hud-green);
+    font-family: 'Share Tech Mono', monospace;
+    line-height: 1.6;
+    overflow-x: hidden;
+    text-shadow: 0 0 6px var(--hud-green-soft);
+    padding: 28px;
+}
+
+/* CRT scanlines + subtle green vignette */
+.crt {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 60;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0px,
+        rgba(0, 0, 0, 0) 2px,
+        rgba(0, 0, 0, 0.28) 3px,
+        rgba(0, 0, 0, 0.28) 4px
+    );
+}
+
+.crt::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.65) 100%);
+}
+
+.crt-flicker {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 61;
+    background: rgba(53, 255, 158, 0.03);
+    animation: flicker 6s infinite steps(1);
+}
+
+@keyframes flicker {
+    0%, 96%, 100% { opacity: 0; }
+    97% { opacity: 1; }
+    98% { opacity: 0; }
+    99% { opacity: 0.6; }
+}
+
+/* Full-viewport HUD frame brackets */
+.frame {
+    position: fixed;
+    width: 42px;
+    height: 42px;
+    border: 2px solid var(--hud-green);
+    opacity: 0.7;
+    z-index: 50;
+    box-shadow: 0 0 12px var(--hud-green-soft);
+}
+.frame.tl { top: 16px; left: 16px; border-right: none; border-bottom: none; }
+.frame.tr { top: 16px; right: 16px; border-left: none; border-bottom: none; }
+.frame.bl { bottom: 16px; left: 16px; border-right: none; border-top: none; }
+.frame.br { bottom: 16px; right: 16px; border-left: none; border-top: none; }
+
+.hud {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+/* Top HUD bar */
+.hud-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 12px 18px;
+    border: 1px solid var(--hud-green-dim);
+    background: var(--hud-panel);
+    letter-spacing: 2px;
+    font-size: 0.78rem;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--hud-green);
+    text-decoration: none;
+    border: 1px solid var(--hud-green-dim);
+    padding: 6px 12px;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.back-link svg { width: 16px; height: 16px; }
+
+.back-link:hover,
+.back-link:focus-visible {
+    background: var(--hud-green-faint);
+    box-shadow: 0 0 14px var(--hud-green-soft);
+    outline: none;
+}
+
+.hud-title {
+    flex: 1;
+    text-align: center;
+    min-width: 220px;
+    opacity: 0.85;
+}
+
+.hud-readout {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.live-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--hud-green);
+    box-shadow: 0 0 10px var(--hud-green);
+    animation: pulse 1.5s steps(1) infinite;
+}
+
+@keyframes pulse { 50% { opacity: 0.2; } }
+
+/* Tribute body */
+.tribute {
+    position: relative;
+    margin-top: 40px;
+    text-align: center;
+    padding: 20px;
+}
+
+.targeting {
+    width: 260px;
+    height: 260px;
+    margin: 0 auto 10px;
+    color: var(--hud-green);
+    opacity: 0.55;
+}
+
+.targeting svg {
+    width: 100%;
+    height: 100%;
+    animation: sweep 30s linear infinite;
+    filter: drop-shadow(0 0 8px var(--hud-green-soft));
+}
+
+@keyframes sweep { to { transform: rotate(360deg); } }
+
+.callsign-label {
+    letter-spacing: 5px;
+    font-size: 0.85rem;
+    opacity: 0.75;
+}
+
+.callsign {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2.2rem, 8vw, 4.2rem);
+    letter-spacing: 4px;
+    margin: 10px 0 22px;
+    color: #d9ffe9;
+    text-shadow: 0 0 18px var(--hud-green), 0 0 40px var(--hud-green-soft);
+}
+
+.status-line {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 40px;
+}
+
+.status-chip {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    padding: 5px 12px;
+    border: 1px solid var(--hud-green-dim);
+    background: var(--hud-green-faint);
+}
+
+/* Day-of-remembrance banner — shown only on FROST's birthday (gold, echoing HONORED) */
+.remembrance {
+    max-width: 640px;
+    margin: -12px auto 44px;
+    padding: 22px 26px;
+    border: 1px solid rgba(255, 207, 59, 0.5);
+    background: rgba(255, 207, 59, 0.06);
+    color: var(--kia);
+    text-shadow: 0 0 10px rgba(255, 207, 59, 0.45);
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+}
+
+.remembrance[hidden] { display: none; }
+
+.rem-tag {
+    display: block;
+    font-size: 0.68rem;
+    letter-spacing: 3px;
+    opacity: 0.8;
+    margin-bottom: 12px;
+}
+
+.rem-line {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1rem, 3.5vw, 1.25rem);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #ffe28a;
+}
+
+.rem-age { font-weight: 900; }
+
+.rem-sub {
+    font-size: 0.82rem;
+    letter-spacing: 1px;
+    opacity: 0.85;
+    margin-top: 10px;
+}
+
+/* Memorial panel — content preserved verbatim */
+.memorial-panel {
+    position: relative;
+    max-width: 640px;
+    margin: 0 auto 48px;
+    padding: 46px 30px 34px;
+    border: 1px solid var(--hud-green-dim);
+    background: var(--hud-panel);
+    clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 22px 100%, 0 calc(100% - 22px));
+}
+
+.panel-tag {
+    position: absolute;
+    top: 16px;
+    left: 24px;
+    font-size: 0.68rem;
+    letter-spacing: 3px;
+    opacity: 0.65;
+}
+
+.memorial-panel h2 {
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 1.1rem;
+    margin-bottom: 22px;
+    color: #d9ffe9;
+}
+
+.memorial-quote {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #c8ffe4;
+    margin-bottom: 24px;
+}
+
+.memorial-footer {
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    opacity: 0.85;
+}
+
+/* Roster panel */
+.roster-panel {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: left;
+    border: 1px solid var(--hud-green-dim);
+    background: var(--hud-panel);
+    padding: 26px 24px;
+}
+
+.roster-panel h3 {
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 3px;
+    font-size: 1rem;
+    color: #d9ffe9;
+    margin-bottom: 6px;
+}
+
+.roster-sub {
+    font-size: 0.82rem;
+    opacity: 0.7;
+    margin-bottom: 18px;
+}
+
+.hud-roster {
+    list-style: none;
+}
+
+.hud-roster li {
+    display: grid;
+    grid-template-columns: 42px 1fr 1fr auto;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 6px;
+    border-bottom: 1px solid rgba(31, 143, 90, 0.35);
+    letter-spacing: 1px;
+    transition: background 0.2s ease;
+}
+
+.hud-roster li:hover {
+    background: var(--hud-green-faint);
+}
+
+.rank-idx { opacity: 0.55; font-size: 0.85rem; }
+
+.rank-name {
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 2px;
+    color: #eafff4;
+}
+
+.rank-role { font-size: 0.8rem; opacity: 0.75; }
+
+.rank-state {
+    justify-self: end;
+    font-size: 0.68rem;
+    letter-spacing: 2px;
+    padding: 3px 9px;
+    border: 1px solid var(--hud-green-dim);
+}
+
+.rank-state.kia {
+    color: var(--kia);
+    border-color: rgba(255, 207, 59, 0.5);
+    text-shadow: 0 0 8px rgba(255, 207, 59, 0.5);
+}
+
+.hud-roster li.fallen .rank-name {
+    color: var(--kia);
+    text-shadow: 0 0 12px rgba(255, 207, 59, 0.4);
+}
+
+/* Footer */
+.hud-foot {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 44px;
+    padding: 14px 18px;
+    border-top: 1px solid var(--hud-green-dim);
+    font-size: 0.78rem;
+    letter-spacing: 2px;
+    opacity: 0.8;
+}
+
+@media (max-width: 620px) {
+    body { padding: 16px; }
+    .hud-roster li {
+        grid-template-columns: 34px 1fr auto;
+    }
+    .rank-role { display: none; }
+    .hud-title { font-size: 0.7rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+    }
+}

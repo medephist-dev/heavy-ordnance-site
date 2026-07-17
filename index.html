@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heavy Ordnance Clan | Est. 2000</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="scanlines" aria-hidden="true"></div>
+
+    <header>
+        <div class="clan-brand">
+            <img src="logo.png" alt="Heavy Ordnance Logo" class="clan-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="logo-placeholder" style="display:none;">H</div>
+            <h1>Heavy Ordnance</h1>
+        </div>
+        <nav class="nav-links">
+            <a href="#history">History</a>
+            <a href="#roster">Roster</a>
+            <a href="#memorial">In Memory</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-reticle" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 1 V6 M12 18 V23 M1 12 H6 M18 12 H23"></path>
+                <circle cx="12" cy="12" r="1.5"></circle>
+            </svg>
+        </div>
+        <div class="hero-status" aria-hidden="true"><span class="dot"></span> SYSTEMS ONLINE // NET UP SINCE 2000</div>
+        <h1>Heavy Ordnance</h1>
+        <p>Broadside. Raindance. Desert of Tarsis. We held the lines, dropped the mortars, and capped the flags since the golden era of Tribes.</p>
+        <div class="hero-readout" aria-hidden="true">
+            <span>[ ARMOR: HEAVY ]</span>
+            <span>[ LOADOUT: MORTAR ]</span>
+            <span>[ STATUS: DEPLOYED ]</span>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="grid">
+
+            <main>
+                <section id="history" class="card">
+                    <span class="card-tag" aria-hidden="true">01 // HISTORY</span>
+                    <h2>Clan History</h2>
+                    <p>Founded in the early 2000s during the height of <strong>Starsiege: Tribes</strong>, Heavy Ordnance was forged in the fires of high-speed skiing, perfectly timed spinfusor mid-airs, and absolute base lockdown. We weren't just a team; we were a traveling artillery barrage.</p>
+                    <br>
+                    <p>Decades later, the camaraderie remains unbroken. This space stands as a digital archive of our victories, our community, and the gaming era that defined us.</p>
+                </section>
+
+                <section id="roster" class="card">
+                    <span class="card-tag" aria-hidden="true">02 // ROSTER</span>
+                    <h2>The Foundry (Roster)</h2>
+                    <p>The veteran crew that made the skies dangerous. Formed in an era of 56k modems and LAN parties, still standing today.</p>
+                    <ul class="roster-list">
+                        <li class="roster-member">
+                            <span class="callsign">RaPiD</span>
+                            <span class="member-tag">CONFIRMED</span>
+                        </li>
+                        <li class="roster-member">
+                            <span class="callsign">TRIDENT</span>
+                            <span class="member-tag">CONFIRMED</span>
+                        </li>
+                        <li class="roster-member">
+                            <span class="callsign">WARPATH</span>
+                            <span class="member-tag">CONFIRMED</span>
+                        </li>
+                    </ul>
+                </section>
+            </main>
+
+            <aside>
+                <a href="frost.html" id="memorial" class="memorial-card" aria-label="Open the tribute page for FROST of Heavy Ordnance">
+                    <span class="memorial-corner tl" aria-hidden="true"></span>
+                    <span class="memorial-corner tr" aria-hidden="true"></span>
+                    <span class="memorial-corner bl" aria-hidden="true"></span>
+                    <span class="memorial-corner br" aria-hidden="true"></span>
+                    <span class="memorial-insignia" aria-hidden="true">
+                        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="24" cy="24" r="16" opacity="0.4"></circle>
+                            <circle cx="24" cy="24" r="11"></circle>
+                            <path d="M24 4 V10 M24 38 V44 M4 24 H10 M38 24 H44"></path>
+                            <path d="M24 15 L26.4 21.6 L33 24 L26.4 26.4 L24 33 L21.6 26.4 L15 24 L21.6 21.6 Z"></path>
+                        </svg>
+                    </span>
+                    <span class="memorial-eyebrow" aria-hidden="true">STANDING WATCH // K.I.A.</span>
+                    <h2>In Memory Of</h2>
+                    <div class="memorial-name">FROST*{HO}*</div>
+                    <span class="memorial-divider" aria-hidden="true"></span>
+                    <p class="memorial-quote">"Great warrior, better friend. May your jetpack never run out of energy, and your spinfusor always find its mark."</p>
+                    <br>
+                    <p class="memorial-footer">Forever a part of the Heavy Ordnance family.</p>
+                    <!-- Shown only on 17 July, FROST's birthday; age computed live -->
+                    <p class="memorial-birthday" hidden>Would have been <span class="memorial-birthday-age"></span> today.</p>
+                    <span class="memorial-enter" aria-hidden="true">Enter Tribute
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+                    </span>
+                </a>
+            </aside>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Heavy Ordnance Clan. Shazbot!</p>
+    </footer>
+
+    <script>
+        // On FROST's birthday (17 July), reveal the remembrance line on the
+        // memorial card with the age he would have reached — always accurate.
+        (function () {
+            var born = { year: 1970, month: 6, day: 17 }; // month is 0-indexed (6 = July)
+            var now = new Date();
+            if (now.getMonth() === born.month && now.getDate() === born.day) {
+                var el = document.querySelector('.memorial-birthday');
+                var age = document.querySelector('.memorial-birthday-age');
+                if (age) { age.textContent = now.getFullYear() - born.year; }
+                if (el) { el.hidden = false; }
+            }
+        })();
+    </script>
+
+</body>
+</html>
